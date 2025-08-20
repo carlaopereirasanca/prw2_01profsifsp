@@ -6,13 +6,6 @@ import Botao from "../Botao/Botao";
 
 const Formulario = (props) => {
 
-    const areas = [
-        'Progr. Básica',
-        'Progr. Web',
-        'Banco de Dados',
-        'Diversos'
-    ]
-
     // Criando os estados...
     const [nome, setNome] = useState('')
     const [titulo, setTitulo] = useState('')
@@ -21,6 +14,7 @@ const Formulario = (props) => {
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
+        //console.log('Form foi submetido => ', nome, titulo, imagem, area)
         props.aoProfCadastrado(
             {
                 "nome" : nome,
@@ -29,6 +23,10 @@ const Formulario = (props) => {
                 "area" : area
             }
         );
+        setNome('');
+        setTitulo('');
+        setImagem('');
+        setArea('');
     }
 
     return (
@@ -61,7 +59,7 @@ const Formulario = (props) => {
 
                 <ListaSuspensa
                     label="Áreas"
-                    itens={areas}
+                    itens={props.areas}
                     aoAlterado={valor => setArea(valor)}
                 />
 
